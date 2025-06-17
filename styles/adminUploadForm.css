@@ -1,0 +1,61 @@
+.admin-upload-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.admin-upload-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-upload-form input[type='text'],
+.admin-upload-form textarea,
+.admin-upload-form input[type='file'] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+}
+
+.admin-upload-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.admin-upload-form button {
+  background: var(--foreground);
+  color: var(--background);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease-in-out;
+}
+
+.admin-upload-form button:hover {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.admin-upload-form p {
+  color: #ffffffcc;
+  text-align: center;
+}

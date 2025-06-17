@@ -1,0 +1,35 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+}
+
+.header-logo {
+  font-weight: bold;
+  color: var(--foreground);
+}
+
+.about-container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-button {
+  background: var(--foreground);
+  border: 1px solid var(--background);
+  color: var(--background);
+  padding: 8px 16px;
+  margin-left: auto;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--foreground);
+}

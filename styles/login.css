@@ -1,0 +1,66 @@
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/your-background.jpg') no-repeat center center/cover;
+  padding: 20px;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 400px;
+  color: #fff;
+}
+
+.login-card h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 14px;
+}
+
+.login-card input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--foreground);
+  color: var(--background);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.login-card button:hover {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.login-card p {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}

@@ -1,12 +1,29 @@
+@import './header.css';
+@import './about.css';
+@import './cards.css';
+@import './login.css';
+@import './adminUploadForm.css';
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+  --icon-color: #171717;
+  --card-bg: #f9f9f9;
+  --card-text: #171717;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --grid-color: rgba(0, 0, 0, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #eeb100;
+    --icon-color: #eeb100;
+    --card-bg: #1a1a1a;
+    --card-text: #ededed;
+    --card-shadow: rgba(255, 255, 255, 0.05);
+    --grid-color: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -14,12 +31,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: 'Geist Mono', monospace !important;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Geist Mono', monospace !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,4 +57,21 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.grid-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1; /* behind content */
+  background-color: var(--background); /* adapt with theme */
+  background-image: linear-gradient(
+      to right,
+      var(--grid-color) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px; /* grid size */
 }
