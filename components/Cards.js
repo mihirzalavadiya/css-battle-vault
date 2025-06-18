@@ -1,16 +1,28 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi'; // React icon
 import Loader from './Loader';
 
-const Cards = ({ initialCards }) => {
+const Cards = () => {
   const router = useRouter();
-  const [cardData] = useState(initialCards);
-  const [filteredCards, setFilteredCards] = useState(initialCards);
+  const [cardData, setCardData] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('title');
   const [sortOrder, setSortOrder] = useState('asc');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      const res = await fetch('/api/cards');
+      const data = await res.json();
+      setCardData(data);
+      setFilteredCards(data);
+      setLoading(false);
+    };
+    fetchCards();
+  }, []);
 
   useEffect(() => {
     let result = [...cardData];
@@ -32,17 +44,9 @@ const Cards = ({ initialCards }) => {
         bField = bField.toLowerCase();
       }
 
-      return sortOrder === 'asc'
-        ? aField < bField
-          ? -1
-          : aField > bField
-          ? 1
-          : 0
-        : aField > bField
-        ? -1
-        : aField < bField
-        ? 1
-        : 0;
+      if (aField < bField) return sortOrder === 'asc' ? -1 : 1;
+      if (aField > bField) return sortOrder === 'asc' ? 1 : -1;
+      return 0;
     });
 
     setFilteredCards(result);
@@ -64,6 +68,7 @@ const Cards = ({ initialCards }) => {
             className="control search-input"
           />
         </div>
+
         <div className="control-group">
           <select
             value={sortField}
@@ -74,6 +79,7 @@ const Cards = ({ initialCards }) => {
             <option value="created_date">Date Created</option>
           </select>
         </div>
+
         <div className="control-group">
           <select
             value={sortOrder}
@@ -85,8 +91,9 @@ const Cards = ({ initialCards }) => {
           </select>
         </div>
       </div>
+      {loading && <Loader />}
 
-      {filteredCards.length === 0 ? (
+      {filteredCards.length === 0 && !loading ? (
         <div className="not-found-wrapper">
           <FiSearch size={72} color="#888" />
           <p className="not-found-text">No matching results found.</p>
