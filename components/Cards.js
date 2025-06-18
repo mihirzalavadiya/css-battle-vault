@@ -1,17 +1,28 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi'; // React icon
 import Loader from './Loader';
 
-const Cards = ({ initialCards }) => {
+const Cards = () => {
   const router = useRouter();
-  const [cardData, setCardData] = useState(initialCards || []);
-  const [filteredCards, setFilteredCards] = useState(initialCards || []);
+  const [cardData, setCardData] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('title');
   const [sortOrder, setSortOrder] = useState('asc');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      const res = await fetch('/api/cards');
+      const data = await res.json();
+      setCardData(data);
+      setFilteredCards(data);
+      setLoading(false);
+    };
+    fetchCards();
+  }, []);
 
   useEffect(() => {
     let result = [...cardData];

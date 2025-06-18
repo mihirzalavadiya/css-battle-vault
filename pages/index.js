@@ -13,19 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export async function getServerSideProps() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/cards`);
-  const data = await res.json();
-
-  return {
-    props: {
-      initialCards: data,
-    },
-  };
-}
-
-export default function Home({ initialCards = [] }) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -38,7 +26,7 @@ export default function Home({ initialCards = [] }) {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.mainContainer}>
-          <Cards initialCards={initialCards} />
+          <Cards />
         </main>
       </div>
     </>
