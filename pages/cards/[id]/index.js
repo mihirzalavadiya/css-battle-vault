@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../../../utils/supabaseClient';
 import BackArrow from '@/components/BackArrow';
 import CodeBlock from '@/components/CodeBlock';
+import Loader from '@/components/Loader';
 
 const CardDetail = () => {
   const router = useRouter();
@@ -32,11 +33,7 @@ const CardDetail = () => {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="loader-container">
-        <div className="spinner"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!card) return <p>No card found.</p>;

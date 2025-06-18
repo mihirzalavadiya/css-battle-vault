@@ -1,25 +1,17 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FiSearch } from 'react-icons/fi'; // React icon
+import { FiSearch } from 'react-icons/fi';
+import Loader from './Loader';
 
-const Cards = () => {
+const Cards = ({ initialCards }) => {
   const router = useRouter();
-  const [cardData, setCardData] = useState([]);
-  const [filteredCards, setFilteredCards] = useState([]);
+  const [cardData, setCardData] = useState(initialCards || []);
+  const [filteredCards, setFilteredCards] = useState(initialCards || []);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('title');
   const [sortOrder, setSortOrder] = useState('asc');
-
-  useEffect(() => {
-    const fetchCards = async () => {
-      const res = await fetch('/api/cards');
-      const data = await res.json();
-      setCardData(data);
-      setFilteredCards(data);
-    };
-    fetchCards();
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let result = [...cardData];
@@ -88,8 +80,9 @@ const Cards = () => {
           </select>
         </div>
       </div>
+      {loading && <Loader />}
 
-      {filteredCards.length === 0 ? (
+      {filteredCards.length === 0 && !loading ? (
         <div className="not-found-wrapper">
           <FiSearch size={72} color="#888" />
           <p className="not-found-text">No matching results found.</p>

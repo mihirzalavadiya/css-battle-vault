@@ -29,8 +29,9 @@
   border: none;
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.15);
-  color: white;
+  color: var(--foreground);
   outline: none;
+  border: 2px solid var(--foreground);
 }
 
 .admin-upload-form textarea {
